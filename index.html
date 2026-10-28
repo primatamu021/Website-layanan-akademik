@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <!-- KENAPA viewport: tanpa ini browser mobile memakai lebar virtual ±980px sehingga layout mobile-first tidak berlaku. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0a0f1f">
+  <meta name="description" content="Portal layanan akademik Program Studi Ilmu Komputer FST Universitas Pattimura: surat aktif kuliah, transkrip sementara, cuti akademik, dan legalisir.">
+  <title>Portal Layanan Akademik | Ilmu Komputer Unpatti</title>
+  <!-- Font: Space Grotesk (judul) + Inter (isi). Bila gagal dimuat, font sistem dipakai (lihat --display/--sans di CSS). -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="icon" type="image/png" href="https://ilkom.fst.unpatti.ac.id/wp-content/uploads/2022/05/logo_unpatti_statuta-300x300.png">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- KENAPA skip link: pengguna keyboard dapat melompati menu tanpa menekan Tab berulang kali. -->
+  <a class="skip-link" href="#konten">Lewati ke konten utama</a>
+
+  <header class="top">
+    <!-- KENAPA alt kosong pada logo: teks "ILKOM FST" di sebelahnya sudah menyebut institusi, jadi pembaca layar tidak mendengarnya dua kali. -->
+    <a class="brand" href="https://ilkom.fst.unpatti.ac.id/">
+      <img src="https://ilkom.fst.unpatti.ac.id/wp-content/uploads/2022/05/logo_unpatti_statuta-300x300.png" alt="" width="40" height="40">
+      <span><strong>ILKOM FST</strong>Universitas Pattimura</span>
+    </a>
+  </header>
+
+  <nav aria-label="Navigasi utama">
+    <ul>
+      <li><a href="#layanan">Layanan</a></li>
+      <li><a href="#kontak">Kontak</a></li>
+      <li><a class="nav-cta" href="#permohonan">Ajukan</a></li>
+    </ul>
+  </nav>
+
+  <main id="konten">
+    <section class="hero" id="beranda" aria-labelledby="h-hero">
+      <div>
+        <p class="kicker">Prodi Ilmu Komputer, FST Unpatti</p>
+        <h1 id="h-hero">Layanan akademik Ilkom, <span class="hl">tanpa antre.</span></h1>
+        <p class="lead">Surat aktif, transkrip, cuti, dan legalisir. Cukup satu formulir dari ponselmu.</p>
+        <p class="actions">
+          <a class="btn" href="#permohonan">Mulai ajukan</a>
+          <a class="btn btn-ghost" href="#layanan">Lihat layanan</a>
+        </p>
+      </div>
+      <!-- KENAPA ol di dalam "terminal": alur memang berurutan, jadi tetap daftar bernomor yang terbaca teknologi bantu; terminal hanyalah gaya. -->
+      <div class="term" role="group" aria-labelledby="h-alur">
+        <p class="term-bar" id="h-alur">alur_layanan</p>
+        <ol class="flow">
+          <li><b>Kirim formulir</b><span>Pilih layanan, isi data.</span></li>
+          <li><b>Diverifikasi</b><span>Petugas memeriksa data kamu.</span></li>
+          <li><b>Ambil dokumen</b><span>Kamu dikabari lewat email.</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="layanan" aria-labelledby="h-layanan">
+      <div class="sec-head">
+        <h2 id="h-layanan">Mau urus apa hari ini?</h2>
+        <p class="sec-intro">Pilih satu, lalu lanjut ke formulir.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8"/></svg>
+          <h3>Surat Aktif Kuliah</h3>
+          <p>Bukti kamu mahasiswa aktif. Untuk beasiswa, tunjangan, atau magang.</p>
+          <a href="#permohonan" data-layanan="l-aktif">Ajukan Surat Aktif Kuliah</a>
+        </article>
+        <article class="card">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          <h3>Transkrip Sementara</h3>
+          <p>Rekap mata kuliah dan nilai sampai semester berjalan.</p>
+          <a href="#permohonan" data-layanan="l-transkrip">Ajukan Transkrip Sementara</a>
+        </article>
+        <article class="card">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          <h3>Cuti Akademik</h3>
+          <p>Rehat satu semester, status mahasiswa tetap terjaga.</p>
+          <a href="#permohonan" data-layanan="l-cuti">Ajukan Cuti Akademik</a>
+        </article>
+        <article class="card">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+          <h3>Legalisir Dokumen</h3>
+          <p>Pengesahan salinan dokumen akademik dari fakultas.</p>
+          <a href="#permohonan" data-layanan="l-legalisir">Ajukan Legalisir Dokumen</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="permohonan" aria-labelledby="h-form">
+      <div class="form-wrap">
+        <div class="form-intro">
+          <h2 id="h-form">Isi data, kirim, selesai.</h2>
+          <p class="sec-intro">Semua kolom wajib diisi. Pastikan NIM dan email benar agar kamu bisa dihubungi.</p>
+          <ul class="facts">
+            <li>Estimasi proses 3 hari kerja (contoh).</li>
+            <li>Data diperiksa petugas akademik.</li>
+          </ul>
+        </div>
+        <div>
+          <div id="sukses" class="success" hidden>
+            <h3 id="s-judul" tabindex="-1">Siap! Permohonan dicatat.</h3>
+            <p>Terima kasih, <strong id="s-nama"></strong>. Permohonan <strong id="s-layanan"></strong> dicatat pada prototipe ini; data tidak dikirim ke server mana pun.</p>
+          </div>
+          <!-- KENAPA tanpa "novalidate": validasi bawaan browser (required, type=email, pattern, minlength) tetap aktif tanpa JavaScript. -->
+          <form action="#permohonan" method="get">
+            <div class="row">
+              <div class="field">
+                <label for="nama">Nama lengkap</label>
+                <input id="nama" name="nama" type="text" autocomplete="name" required>
+              </div>
+              <div class="field">
+                <label for="nim">NIM</label>
+                <input id="nim" name="nim" type="text" inputmode="numeric" pattern="[0-9]{8,12}" title="8 sampai 12 digit angka" aria-describedby="nim-info" required>
+                <small id="nim-info">8–12 digit angka.</small>
+              </div>
+            </div>
+            <div class="field">
+              <label for="email">Email aktif</label>
+              <input id="email" name="email" type="email" autocomplete="email" required>
+            </div>
+            <!-- KENAPA fieldset+legend: pilihan radio dibacakan bersama pertanyaannya ("Jenis layanan"). -->
+            <fieldset>
+              <legend>Jenis layanan</legend>
+              <div class="opts">
+                <div class="opt"><input id="l-aktif" name="layanan" type="radio" value="surat-keterangan-aktif-kuliah" required><label for="l-aktif">Surat Aktif Kuliah</label></div>
+                <div class="opt"><input id="l-transkrip" name="layanan" type="radio" value="transkrip-sementara"><label for="l-transkrip">Transkrip Sementara</label></div>
+                <div class="opt"><input id="l-cuti" name="layanan" type="radio" value="cuti-akademik"><label for="l-cuti">Cuti Akademik</label></div>
+                <div class="opt"><input id="l-legalisir" name="layanan" type="radio" value="legalisir-dokumen"><label for="l-legalisir">Legalisir Dokumen</label></div>
+              </div>
+            </fieldset>
+            <div class="field">
+              <label for="keperluan">Keperluan</label>
+              <textarea id="keperluan" name="keperluan" rows="4" minlength="10" maxlength="300" aria-describedby="kep-info" required></textarea>
+              <small id="kep-info">10–300 karakter. Untuk apa layanan ini dibutuhkan? <span id="kep-count"></span></small>
+            </div>
+            <button type="submit">Kirim permohonan</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="kontak">
+    <div class="foot">
+      <section aria-labelledby="h-kontak">
+        <h2 id="h-kontak">Kontak</h2>
+        <!-- KENAPA address: elemen khusus informasi kontak, dikenali teknologi bantu. -->
+        <address>
+          <a href="mailto:ilkom.fst@unpatti.ac.id">ilkom.fst@unpatti.ac.id</a><br>
+          <a href="tel:+62911484848">0911-484848</a><br>
+          <a href="https://www.instagram.com/ilmukomputer_unpatti/">Instagram @ilmukomputer_unpatti</a><br>
+          Jl. Ir. M. Putuhena, Poka, Kota Ambon, Maluku
+        </address>
+      </section>
+      <section aria-labelledby="h-akses">
+        <h2 id="h-akses">Akses cepat</h2>
+        <ul class="chips">
+          <li><a href="https://ilkom.fst.unpatti.ac.id/kurikulum/">Kurikulum</a></li>
+          <li><a href="https://ilkom.fst.unpatti.ac.id/beasiswa/">Beasiswa</a></li>
+          <li><a href="https://ilkom.fst.unpatti.ac.id/peraturan/">Peraturan</a></li>
+          <li><a href="https://ilkom.fst.unpatti.ac.id/dosen/">Dosen</a></li>
+          <li><a href="https://ilkom.fst.unpatti.ac.id/lab-komputer/">Lab Komputer</a></li>
+          <li><a href="https://ojs3.unpatti.ac.id/index.php/algorithm">E-Journal Algorithm</a></li>
+        </ul>
+      </section>
+    </div>
+    <p class="copy">Prototipe tugas mata kuliah Membangun Web (Pertemuan 5), bukan situs resmi Universitas Pattimura. Rincian layanan bersifat contoh; informasi resmi di <a href="https://ilkom.fst.unpatti.ac.id/">ilkom.fst.unpatti.ac.id</a>. Logo milik Universitas Pattimura.</p>
+  </footer>
+
+  <script>
+    /* Peningkatan progresif: tanpa JavaScript, halaman tetap berfungsi penuh. */
+    (function () {
+      var $ = function (id) { return document.getElementById(id); };
+      /* 1. Kartu layanan memilihkan jenis layanan di formulir. */
+      document.querySelectorAll('[data-layanan]').forEach(function (a) {
+        a.addEventListener('click', function () {
+          var r = $(a.getAttribute('data-layanan'));
+          if (r) r.checked = true;
+        });
+      });
+      /* 2. Penghitung karakter. */
+      var t = $('keperluan'), c = $('kep-count');
+      if (t && c) { var u = function () { c.textContent = t.value.length + ' / 300'; }; t.addEventListener('input', u); u(); }
+      /* 3. Setelah formulir dikirim (data ada di URL), tampilkan konfirmasi simulasi. textContent = aman dari injeksi HTML. */
+      var q = new URLSearchParams(location.search), nama = q.get('nama'), val = q.get('layanan'), s = $('sukses');
+      if (s && nama && val) {
+        var label = val;
+        document.querySelectorAll('input[name="layanan"]').forEach(function (r) {
+          if (r.value === val) label = document.querySelector('label[for="' + r.id + '"]').textContent;
+        });
+        $('s-nama').textContent = nama;
+        $('s-layanan').textContent = label;
+        s.hidden = false;
+        $('s-judul').focus(); /* fokus ke judul: pembaca layar langsung membacakan konfirmasi */
+      }
+    })();
+  </script>
+</body>
+</html>

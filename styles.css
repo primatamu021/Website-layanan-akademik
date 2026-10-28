@@ -1,0 +1,171 @@
+/* Portal Layanan Akademik - Ilmu Komputer FST Unpatti - styles.css
+   MOBILE-FIRST: aturan di luar @media = layar kecil (1 kolom); @media (min-width) hanya MENAMBAH. */
+
+:root {
+  color-scheme: dark; /* KENAPA: kontrol bawaan (select, radio, scrollbar) ikut tampil gelap */
+  /* Semua warna & font di satu tempat. Rasio kontras di bawah dihitung terhadap --bg / --surface. */
+  --bg: #0a0f1f;
+  --surface: #121a31;
+  --field: #0d1530;
+  --line: #2b3760;       /* garis dekoratif */
+  --ctl: #7f8db8;        /* border kontrol ±5:1 (komponen UI butuh 3:1) */
+  --text: #eef2ff;       /* ±16:1 */
+  --muted: #aab4d6;      /* ±8:1 (AA butuh 4,5:1) */
+  --accent: #5eead4;     /* mint ±12:1; teks gelap (--accent-ink) di atasnya ±12:1 */
+  --accent-ink: #04141a;
+  --coral: #ff7a90;      /* ±7:1 */
+  --display: "Space Grotesk", system-ui, sans-serif;
+  --sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  /* KENAPA: isi dibatasi 72rem & rata tengah, gutter minimal 1rem. Persen dihitung di tempat var() dipakai (padding). */
+  --wrap: max(1rem, calc((100% - 72rem) / 2));
+}
+
+/* KENAPA border-box: width mencakup padding+border, jadi elemen 100% tidak melebihi layar (penyebab utama scroll horizontal). */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-padding-top: 1rem; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+/* Pola titik = "kertas grafik", selaras dengan tema komputasi. */
+body { margin: 0; font: 1rem/1.65 var(--sans); color: var(--text); background: var(--bg) radial-gradient(circle at 1px 1px, #1c2647 1px, transparent 1.5px) 0 0 / 24px 24px; overflow-wrap: break-word; }
+a { color: var(--accent); }
+h1, h2, h3 { margin: 0; font-family: var(--display); line-height: 1.1; letter-spacing: -.02em; }
+h2 { font-size: clamp(1.8rem, 5.5vw, 2.6rem); }
+.sec-intro { max-width: 36rem; margin: .6rem 0 0; color: var(--muted); }
+
+/* Fokus keyboard wajib terlihat. :focus-visible = muncul untuk keyboard, tidak mengganggu klik mouse. */
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.skip-link { position: absolute; left: 1rem; top: -4rem; z-index: 30; padding: .75rem 1rem; color: var(--accent-ink); background: var(--accent); font-weight: 700; }
+.skip-link:focus { top: 1rem; outline-color: var(--text); }
+
+/* Setiap blok memakai gutter yang sama (--wrap). */
+.top, nav, main > section, footer { padding-inline: var(--wrap); }
+main > section { padding-block: 3rem; }
+
+/* --- Header & navigasi (pil) --- */
+.top { padding-block: 1rem .5rem; }
+.brand { display: inline-flex; align-items: center; gap: .75rem; color: var(--muted); font-size: .85rem; line-height: 1.25; text-decoration: none; }
+.brand img { display: block; width: 2.5rem; height: 2.5rem; }
+.brand strong { display: block; font: 700 1.2rem/1.1 var(--display); color: var(--text); }
+nav ul { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0; padding: .5rem 0 1rem; list-style: none; } /* Flexbox: deretan 1 dimensi, wrap jika sempit */
+nav a { display: inline-flex; align-items: center; min-height: 2.75rem; padding: 0 1.1rem; color: var(--text); font: 600 .95rem var(--display); text-decoration: none; border: 2px solid var(--line); border-radius: 999px; } /* ±44px: target sentuh */
+nav a:hover { color: var(--accent); border-color: var(--accent); }
+nav .nav-cta { color: var(--accent-ink); background: var(--accent); border-color: var(--accent); }
+nav .nav-cta:hover { color: var(--accent-ink); background: #8ff3e2; }
+
+/* --- Hero --- */
+.hero { position: relative; isolation: isolate; overflow: clip; display: grid; gap: 2.5rem; padding-block: 2rem 3.5rem; }
+.hero > * { min-width: 0; }
+.hero::before { content: ""; position: absolute; z-index: -1; top: -6rem; right: -8rem; width: 36rem; height: 26rem; background: radial-gradient(closest-side, rgb(94 234 212 / .16), transparent); } /* cahaya latar; overflow:clip mencegah scroll horizontal */
+.kicker { display: inline-flex; align-items: center; gap: .6rem; margin: 0 0 1.25rem; padding: .35rem .9rem; font: 500 .85rem var(--mono); color: var(--accent); border: 1.5px solid var(--line); border-radius: 999px; }
+.kicker::before { content: ""; width: .55rem; height: .55rem; border-radius: 50%; background: var(--accent); }
+@media (prefers-reduced-motion: no-preference) { .kicker::before { animation: ping 1.8s ease-out infinite; } }
+@keyframes ping { from { box-shadow: 0 0 0 0 rgb(94 234 212 / .6); } to { box-shadow: 0 0 0 .7rem transparent; } }
+.hero h1 { margin-bottom: 1.25rem; font-size: clamp(2.5rem, 10vw, 4.75rem); line-height: 1.02; }
+.hl { display: inline-block; padding: 0 .2em; color: var(--accent-ink); background: var(--accent); border-radius: .2em; transform: rotate(-1.5deg); } /* efek stabilo */
+.lead { max-width: 32rem; margin: 0 0 1.75rem; font-size: 1.125rem; color: var(--muted); }
+.actions { display: flex; flex-wrap: wrap; gap: .75rem; margin: 0; }
+
+/* Jendela terminal: alur 3 langkah. */
+.term { align-self: start; background: #070b17; border: 2px solid var(--line); border-radius: 1rem; overflow: hidden; font-family: var(--mono); }
+.term-bar { position: relative; margin: 0; padding: .7rem 1rem .7rem 4.5rem; font-size: .85rem; color: var(--muted); background: var(--surface); border-bottom: 2px solid var(--line); }
+.term-bar::before { content: ""; position: absolute; left: 1rem; top: 50%; width: .7rem; height: .7rem; margin-top: -.35rem; border-radius: 50%; background: #ff5f57; box-shadow: 1.1rem 0 #febc2e, 2.2rem 0 #28c840; }
+.flow { margin: 0; padding: 1.25rem 1.25rem 1.25rem 3.25rem; list-style: decimal-leading-zero; }
+.flow li { margin-bottom: 1rem; padding-left: .4rem; }
+.flow li:last-child { margin-bottom: 0; }
+.flow li::marker { color: var(--accent); font-weight: 700; }
+.flow b { display: block; color: var(--text); }
+.flow span { font-family: var(--sans); font-size: .95rem; color: var(--muted); }
+
+/* --- Tombol (elemen native: <a> untuk berpindah, <button> untuk aksi) --- */
+.btn, button { display: inline-flex; align-items: center; justify-content: center; min-height: 3rem; padding: .6rem 1.6rem; font: 700 1rem/1.2 var(--display); text-align: center; text-decoration: none; color: var(--accent-ink); background: var(--accent); border: 2px solid var(--accent); border-radius: 999px; box-shadow: 0 4px 0 #1b8f80; cursor: pointer; transition: transform .12s, box-shadow .12s; } /* bayangan solid = tombol terasa "ditekan" */
+.btn:hover, button:hover { transform: translateY(-2px); box-shadow: 0 6px 0 #1b8f80; }
+.btn:active, button:active { transform: translateY(3px); box-shadow: 0 1px 0 #1b8f80; }
+.btn-ghost { color: var(--text); background: transparent; border-color: var(--ctl); box-shadow: none; }
+.btn-ghost:hover { background: rgb(255 255 255 / .08); border-color: var(--text); box-shadow: none; }
+.btn-ghost:active { box-shadow: none; }
+
+/* --- Kartu layanan --- */
+.sec-head { margin-bottom: 1.75rem; }
+/* KENAPA Grid auto-fit + minmax: jumlah kolom menyesuaikan lebar (1 / 2 / 4) TANPA media query.
+   min(100%, 14.5rem) mencegah kartu lebih lebar dari layar yang sangat sempit. */
+.cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14.5rem), 1fr)); }
+.card:nth-child(1) { --c: var(--accent); }
+.card:nth-child(2) { --c: var(--coral); }
+.card:nth-child(3) { --c: #ffd166; }
+.card:nth-child(4) { --c: #8ab4ff; }
+/* KENAPA Flexbox di dalam kartu: p diberi flex:1 agar tautan selalu rata di dasar kartu walau panjang teks berbeda. */
+.card { position: relative; display: flex; flex-direction: column; gap: .6rem; padding: 1.4rem; background: var(--surface); border: 2px solid var(--line); border-radius: 1.25rem; transition: transform .15s, box-shadow .15s, border-color .15s; }
+.card:hover { transform: translate(-3px, -3px); border-color: var(--c); box-shadow: 5px 5px 0 var(--c); } /* efek "stiker" */
+.ic { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; } /* ikon dekoratif: aria-hidden di HTML */
+.card .ic { width: 3.25rem; height: 3.25rem; padding: .8rem; color: var(--accent-ink); background: var(--c); border-radius: .9rem; }
+.card h3 { margin-top: .4rem; font-size: 1.3rem; }
+.card p { flex: 1; margin: 0; font-size: .95rem; color: var(--muted); }
+.card a { color: var(--text); font: 700 1rem var(--display); text-decoration: underline; text-decoration-color: var(--c); text-decoration-thickness: 3px; text-underline-offset: .35rem; }
+.card a::after { content: ""; position: absolute; inset: 0; border-radius: inherit; } /* tautan diperluas: seluruh kartu dapat diketuk */
+.card a:focus-visible { outline: none; }
+.card a:focus-visible::after { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+/* --- Formulir --- */
+.form-wrap { display: grid; gap: 2rem; align-items: start; }
+.facts { display: grid; gap: .4rem; margin: 1.25rem 0 0; padding: 0; list-style: none; font-size: .95rem; color: var(--muted); }
+.facts li::before { content: "+ "; color: var(--accent); font-family: var(--mono); font-weight: 700; }
+form { display: grid; gap: 1.25rem; padding: 1.25rem; background: var(--surface); border: 2px solid var(--line); border-radius: 1.5rem; }
+.row, .opts { display: grid; gap: 1.25rem; }
+.opts { gap: .6rem; }
+label, legend { display: block; margin-bottom: .4rem; font: 600 .95rem var(--display); color: var(--text); }
+input:not([type="radio"]), textarea { width: 100%; min-height: 3rem; padding: .7rem .9rem; font: inherit; color: var(--text); background: var(--field); border: 2px solid var(--ctl); border-radius: .75rem; }
+textarea { resize: vertical; }
+input:focus-visible, textarea:focus-visible { outline-offset: 1px; border-color: var(--accent); }
+small { display: block; margin-top: .35rem; font-size: .85rem; color: var(--muted); }
+/* KENAPA min-width:0: fieldset bawaannya min-width:min-content, sehingga bisa memaksa halaman melebar di layar sempit. */
+fieldset { min-width: 0; margin: 0; padding: 0; border: 0; }
+legend { padding: 0; }
+/* Ubin pilihan: label diperluas (::after) agar seluruh ubin dapat diklik; :has() menandai ubin yang terpilih. */
+.opt { position: relative; display: flex; align-items: center; gap: .7rem; min-height: 3.25rem; padding: .5rem .9rem; background: var(--field); border: 2px solid var(--ctl); border-radius: .75rem; }
+.opt label { margin: 0; font: 500 1rem var(--sans); }
+.opt label::after { content: ""; position: absolute; inset: 0; }
+.opt:has(input:checked) { background: rgb(94 234 212 / .12); border-color: var(--accent); }
+.opt:has(input:checked) label { font-weight: 600; }
+input[type="radio"] { width: 1.25rem; height: 1.25rem; margin: 0; accent-color: var(--accent); }
+/* :user-invalid = hanya setelah pengguna berinteraksi, sehingga formulir kosong tidak langsung tampak "salah". */
+input:user-invalid, textarea:user-invalid { border-color: var(--coral); }
+input:user-invalid + small, textarea:user-invalid + small { color: var(--coral); font-weight: 600; }
+form button { width: 100%; font-size: 1.05rem; }
+.success { margin-bottom: 1rem; padding: 1rem 1.25rem; background: rgb(94 234 212 / .1); border: 2px solid var(--accent); border-radius: 1rem; scroll-margin-top: 5rem; }
+.success h3 { font-size: 1.3rem; color: var(--accent); }
+.success p { margin: .4rem 0 0; }
+
+/* --- Footer --- */
+footer { padding-block: 2.5rem 1.5rem; background: #070b17; border-top: 2px solid var(--line); }
+.foot { display: grid; gap: 2rem; }
+footer h2 { margin-bottom: .75rem; font-size: 1.2rem; }
+address { font-style: normal; line-height: 1.9; color: var(--muted); }
+.chips { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0; padding: 0; list-style: none; }
+.chips a { display: inline-flex; align-items: center; min-height: 2.75rem; padding: 0 1rem; color: var(--text); font-size: .9rem; text-decoration: none; border: 2px solid var(--line); border-radius: 999px; }
+.chips a:hover { color: var(--accent); border-color: var(--accent); }
+.copy { max-width: 48rem; margin: 2rem 0 0; padding-top: 1rem; font-size: .85rem; color: var(--muted); border-top: 1px solid var(--line); }
+
+/* --- Breakpoint dipilih dari KONTEN, bukan nama perangkat --- */
+/* 36rem (576px): dua kolom isian ≥14rem + gap + padding mulai muat nyaman. */
+@media (min-width: 36rem) {
+  .row, .opts { grid-template-columns: 1fr 1fr; }
+  form { padding: 2rem; }
+  form button { width: auto; justify-self: start; min-width: 12rem; }
+}
+/* 48rem (768px): navigasi menempel di atas; ruang antarbagian melebar. */
+@media (min-width: 48rem) {
+  html { scroll-padding-top: 5rem; } /* agar judul tidak tertutup navigasi yang menempel */
+  nav { position: sticky; top: 0; z-index: 20; background: var(--bg); border-bottom: 1px solid var(--line); }
+  nav ul { padding-block: .6rem; }
+  nav li:last-child { margin-left: auto; } /* tombol "Ajukan" didorong ke kanan */
+  main > section { padding-block: 4.5rem; }
+  .foot { grid-template-columns: 1fr 1.4fr; }
+}
+/* 64rem (1024px): hero dan formulir menjadi dua kolom. */
+@media (min-width: 64rem) {
+  .hero { grid-template-columns: 1.15fr 1fr; align-items: center; gap: 4rem; padding-block: 4rem 5rem; }
+  .form-wrap { grid-template-columns: minmax(0, 20rem) minmax(0, 1fr); gap: 3.5rem; }
+  .form-intro { position: sticky; top: 6rem; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
